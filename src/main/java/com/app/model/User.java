@@ -1,7 +1,7 @@
+package com.app.model;
+
+
 import java.util.List;
-
-import com.app.entity.Task;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -8,13 +8,14 @@ import java.util.List;
 
 public interface UserRepository extends CrudRepository<User, Long>  {
 
-    User saveUser(User user);
-    
-    Optional<User> findUserById(Long id);
-    
-    List<User> getAllUsers();
-    
-    User updateUser(User user);
-    
-    void deleteUser(Long id);
+
+    <S extends User> S save(S entity);
+
+    Optional<User> findById(Long id);
+
+    List<User> findAll();
+
+    void deleteById(Long id);
+
+    <S extends User> S update(S entity);
 }

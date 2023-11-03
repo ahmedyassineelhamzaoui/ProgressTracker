@@ -1,8 +1,11 @@
 package com.app.service;
 
+import org.springframework.stereotype.Service;
+
 import com.app.model.User;
 import com.app.repository.UserRepositoryImpl;
 
+@Service
 public class UserService {
 
 	private UserRepositoryImpl userRepositoryImpl; 

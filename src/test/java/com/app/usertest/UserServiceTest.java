@@ -41,6 +41,7 @@ class UserServiceTest {
 	    user.setEmail("yassine@gmail.com");
 	    user.setLastName("yassine");
 	    user.setFirstName("ahmed");
+	    user.setPassword("eRROR404@");
 
 	    when(userRepositoryImpl.save(user)).thenReturn(user);
 

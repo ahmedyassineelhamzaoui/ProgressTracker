@@ -20,11 +20,24 @@ public class UserService {
         }
         
     }
-	 private boolean isValidUser(User user) {
-		 String emailRegex = "[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+";
-		 String passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$";
-	    
-        return !user.getEmail().matches(emailRegex) || !user.getPassword().matches(passwordRegex) || (user.getFirstName() != null && !user.getFirstName().isEmpty() &&
-                user.getLastName() != null && !user.getLastName().isEmpty());
+	private boolean isValidUser(User user) {
+        return isValidEmail(user.getEmail()) &&
+               isValidPassword(user.getPassword()) &&
+               isValidName(user.getFirstName()) &&
+               isValidName(user.getLastName());
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+";
+        return email.matches(emailRegex);
+    }
+
+    private boolean isValidPassword(String password) {
+        String passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$";
+        return password.matches(passwordRegex);
+    }
+
+    private boolean isValidName(String name) {
+        return name != null && !name.isEmpty();
     }
 }

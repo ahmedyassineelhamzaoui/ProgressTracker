@@ -21,7 +21,10 @@ public class UserService {
         
     }
 	 private boolean isValidUser(User user) {
-        return user.getFirstName() != null && !user.getFirstName().isEmpty() &&
-                user.getLastName() != null && !user.getLastName().isEmpty();
+		 String emailRegex = "[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+";
+		 String passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$";
+	    
+        return !user.getEmail().matches(emailRegex) || !user.getPassword().matches(passwordRegex) || (user.getFirstName() != null && !user.getFirstName().isEmpty() &&
+                user.getLastName() != null && !user.getLastName().isEmpty());
     }
 }

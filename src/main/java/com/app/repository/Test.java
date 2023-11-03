@@ -5,8 +5,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import com.app.model.User;
 
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityManager;
 
 
 public class Test {

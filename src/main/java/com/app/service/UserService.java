@@ -12,12 +12,13 @@ public class UserService {
 	public UserService(UserRepositoryImpl userRepositoryImpl) {
 		this.userRepositoryImpl = userRepositoryImpl;
 	}
-	public void saveUser(User user) {
+	public User saveUser(User user) {
         if (isValidUser(user)) {
-        	userRepositoryImpl.save(user);
+        	return userRepositoryImpl.save(user);
         } else {
             throw new IllegalArgumentException("Invalid user data");
         }
+        
     }
 	 private boolean isValidUser(User user) {
         return user.getFirstName() != null && !user.getFirstName().isEmpty() &&

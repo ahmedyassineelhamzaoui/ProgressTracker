@@ -1,12 +1,10 @@
 package com.app.repository;
-
-import org.springframework.data.repository.CrudRepository;
 import com.app.model.User;
 import java.util.Optional;
 import java.util.List;
 
 
-public interface UserRepository extends CrudRepository<User, Long>  {
+public interface UserRepository {
 
 
     <S extends User> S save(S entity);

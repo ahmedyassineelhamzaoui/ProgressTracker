@@ -30,6 +30,25 @@ public class Test {
 //	    } catch (DataIntegrityViolationException e) {
 //	        System.out.println("Error: Duplicate user found with email " + user.getEmail());
 //	    }
+		User existingUser = userService.findUserById(1L); 
+
+        if (existingUser != null) {
+            existingUser.setName("Jane");
+            existingUser.setEmail("jane@example.com");
+            existingUser.setLastName("Doe");
+            existingUser.setFirstName("Jane");
+            existingUser.setPassword("newpassword");
+
+            User updatedUser = userService.updateUser(existingUser);
+
+            if (updatedUser != null) {
+                System.out.println("User updated successfully: " + updatedUser);
+            } else {
+                System.out.println("Failed to update the user.");
+            }
+        } else {
+            System.out.println("User not found.");
+        }
 
     }
 }

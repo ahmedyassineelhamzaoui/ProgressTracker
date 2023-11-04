@@ -5,7 +5,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import com.app.model.User;
 import com.app.service.UserService;
-import com.app.repository.UserRepositoryImpl;
 
 public class Test {
     public static void main(String[] args) {
@@ -13,13 +12,18 @@ public class Test {
 		UserService userService = cont.getBean(UserService.class);
 		
 		User user = new User();
-	    user.setId(1L);
 	    user.setName("John Doe");
-	    user.setEmail("yassine@gmail.com");
+	    user.setEmail("mark@gmail.com");
 	    user.setLastName("yassine");
 	    user.setFirstName("ahmed");
 	    user.setPassword("eRROR404@");
-	    User savedUser = userService.saveUser(user);
+	    User savedUser ;
+	    try {
+		     savedUser = userService.saveUser(user);
+	    } catch (DuplicateUserException e) {
+	        // Handle the exception, such as displaying an error message to the user
+	        System.out.println("Error: " + e.getMessage());
+	    }
 	    if(savedUser != null) {
 	        System.out.println("User saved successfully: " + savedUser);
 	    }else {

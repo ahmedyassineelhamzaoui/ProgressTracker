@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.app.model.User;
-import com.app.repository.UserRepositoryImpl;
+import com.app.repository.CrudRepository;
 import com.app.service.UserService;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -19,7 +19,7 @@ class UserServiceTest {
 	
 
     @Mock
-    private UserRepositoryImpl userRepositoryImpl;
+    private CrudRepository userRepository;
     
     @InjectMocks
 	private UserService userService;
@@ -43,11 +43,11 @@ class UserServiceTest {
 	    user.setFirstName("ahmed");
 	    user.setPassword("eRROR404@");
 
-	    when(userRepositoryImpl.save(user)).thenReturn(user);
+	    when(userRepository.save(user)).thenReturn(user);
 
 	    User savedUser = userService.saveUser(user);
 
-	    verify(userRepositoryImpl).save(user);
+	    verify(userRepository).save(user);
 
 	    assertEquals(user, savedUser);
 	}

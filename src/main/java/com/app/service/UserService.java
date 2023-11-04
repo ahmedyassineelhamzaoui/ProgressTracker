@@ -66,4 +66,12 @@ public class UserService {
             throw new DuplicateUserException("Error: Duplicate user found with email " + user.getEmail());
         }
     }
+    public User findUserById(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            return userOptional.get();
+        } else {
+            throw new IllegalArgumentException("User not found with ID: " + id);
+        }
+    }
 }

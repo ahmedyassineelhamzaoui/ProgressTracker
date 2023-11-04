@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,4 +88,8 @@ public class UserService {
             throw new DataIntegrityViolationException("Error deleting user with ID: " + id);
         }
     }
+
+	 public List<User> getAllUsers() {
+	     return userRepository.findAll();
+	 }
 }

@@ -1,4 +1,6 @@
 package com.app.repository;
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -51,14 +53,18 @@ public class Test {
 //        }
 //
 		// delete method
-		User existingUser = userService.findUserById(6L); 
-
-        if (existingUser != null) {
-            System.out.println("Existing User: " + existingUser);
-            userService.deleteUser(existingUser.getId());
-            System.out.println("User deleted successfully.");
-        } else {
-            System.out.println("User not found.");
-        }
+//		User existingUser = userService.findUserById(6L); 
+//
+//        if (existingUser != null) {
+//            System.out.println("Existing User: " + existingUser);
+//            userService.deleteUser(existingUser.getId());
+//            System.out.println("User deleted successfully.");
+//        } else {
+//            System.out.println("User not found.");
+//        }
+		List<User> users = userService.getAllUsers();
+		for (User user : users) {
+		    System.out.println(user);
+		}
     }
 }

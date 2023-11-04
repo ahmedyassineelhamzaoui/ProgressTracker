@@ -6,27 +6,29 @@ import java.util.Optional;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.model.User;
 
-public class UserRepositoryImpl implements UserRepository {
+@Repository
+public class UserRepositoryImpl implements CrudRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
+    
 
-    private HibernateTemplate hibernateTemplate;
+    public EntityManager getEntityManager() {
+		return entityManager;
+	}
 
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
-
-    @Override
+	@Override
     @Transactional
     public <S extends User> S save(S entity) {
         entityManager.persist(entity);

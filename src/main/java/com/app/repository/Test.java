@@ -62,9 +62,9 @@ public class Test {
 //        } else {
 //            System.out.println("User not found.");
 //        }
-		List<User> users = userService.getAllUsers();
-		for (User user : users) {
-		    System.out.println(user);
-		}
+//		List<User> users = userService.getAllUsers();
+//		for (User user : users) {
+//		    System.out.println(user);
+//		}
     }
 }

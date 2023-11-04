@@ -1,9 +1,13 @@
 package com.app.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.app.exceptions.DuplicateUserException;
 import com.app.model.User;
 import com.app.repository.CrudRepository;
 
@@ -42,5 +46,24 @@ public class UserService {
 
     private boolean isValidName(String name) {
         return name != null && !name.isEmpty();
+    }
+    public User updateUser(User user) {
+        try {
+            Optional<User> existingUserOptional = userRepository.findById(user.getId());
+            if (existingUserOptional.isPresent()) {
+                User existingUser = existingUserOptional.get();
+                existingUser.setName(user.getName());
+                existingUser.setEmail(user.getEmail());
+                existingUser.setLastName(user.getLastName());
+                existingUser.setFirstName(user.getFirstName());
+                existingUser.setPassword(user.getPassword());
+
+                return userRepository.save(existingUser);
+            } else {
+                throw new IllegalArgumentException("User not found with ID: " + user.getId());
+            }
+        } catch (DataIntegrityViolationException e) {
+            throw new DuplicateUserException("Error: Duplicate user found with email " + user.getEmail());
+        }
     }
 }

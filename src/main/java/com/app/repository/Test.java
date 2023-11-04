@@ -14,11 +14,11 @@ public class Test {
 		UserService userService = cont.getBean(UserService.class);
 		
 		User user = new User();
-	    user.setName("John Doe");
-	    user.setEmail("mark@gmail.com");
-	    user.setLastName("yassine");
-	    user.setFirstName("ahmed");
-	    user.setPassword("eRROR404@");
+	    user.setName("zdk dz");
+	    user.setEmail("lacx,k@gmail.com");
+	    user.setLastName("kezjf");
+	    user.setFirstName("zdkdccf");
+	    user.setPassword("sdl@JSQ23");
 	    User savedUser = null ;
 	    try {
 	        savedUser = userService.saveUser(user);
